@@ -1,0 +1,27 @@
+package MediumExercises;
+
+import java.util.Scanner;
+
+public class TaxCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your income: ");
+        int income = scanner.nextInt();
+
+        double tax;
+
+        if (income <= 20000) {
+            tax = income * 0.18;
+        } else if (income <= 50000) {
+            tax = income * 0.20;
+        } else {
+            tax = income * 0.40;
+        }
+
+        System.out.println("Tax owed: ₹" + tax);
+
+        scanner.close();
+    }
+
+}

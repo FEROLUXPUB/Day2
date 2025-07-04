@@ -1,0 +1,36 @@
+package MediumExercises;
+
+public class Book {
+    private String title;
+    private String author;
+    private int pages;
+
+
+    public Book(String title, String author, int pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    }
+
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        this.pages = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Book Title: " + title + "\nAuthor: " + author + "\nPages: " + pages;
+    }
+
+    public static void main(String[] args) {
+        Book b1 = new Book("The God of Small Things", "by Arundhati Roy", 328);
+        Book b2 = new Book("The White Tiger", " by Aravind Adiga");
+
+        System.out.println(b1);
+        System.out.println();
+        System.out.println(b2);
+    }
+}
+

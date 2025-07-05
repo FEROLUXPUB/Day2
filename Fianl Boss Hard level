@@ -1,0 +1,52 @@
+package Final_Boss;
+
+import java.io.*;
+import java.util.*;
+
+public class FileStats {
+    public static void main(String[] args) {
+        Scanner inputScanner = new Scanner(System.in);
+
+        System.out.print("Enter the file name: ");
+        String filename = inputScanner.nextLine();
+
+        Map<String, Integer> wordFreq = new HashMap<>();
+        int lineCount = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                lineCount++;
+
+
+                String[] words = line.toLowerCase().replaceAll("[^a-z0-9\\s]", "").split("\\s+");
+
+                for (String word : words) {
+                    if (!word.isEmpty()) {
+                                 wordFreq.put(word, wordFreq.getOrDefault(word, 0) + 1);
+                    }
+                }
+            }
+
+            System.out.println("\nTotal lines: " + lineCount);
+
+            
+            List<Map.Entry<String, Integer>> sortedWords = new ArrayList<>(wordFreq.entrySet());
+            sortedWords.sort((a, b) -> b.getValue() - a.getValue());
+
+            System.out.println("Top 3 most frequent words:");
+            for (int i = 0; i < Math.min(3, sortedWords.size()); i++) {
+                Map.Entry<String, Integer> entry = sortedWords.get(i);
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + filename);
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+
+        inputScanner.close();
+    }
+}
